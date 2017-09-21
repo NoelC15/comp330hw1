@@ -5,25 +5,28 @@ public class FileData{
 
 	@Test
 	public void testCountWord(){
-		wordRecognition File = new wordRecognition();
+		public wordRecognition File = new wordRecognition();
 		File.CountWord;
 	}
 
 	@Test
 	public void testReadInFile(){
-		wordRecognition File = new wordRecognition();
+		public wordRecognition File = new wordRecognition();
 		File.ReadInFile;
 	}
 
 	@Test
 	public void testSetFile(){
-		wordRecognition File = new wordRecognition();
+		public wordRecognition File = new wordRecognition();
 		File.setFile;
 	}
 
+	@Test
+	public void
+
 
 	public static void main(String[] args) {
-		wordRecognition File = new wordRecognition();
+		public wordRecognition File = new wordRecognition();
 		File.setFile(FileName);
 		File.ReadInFile();
 		File.CountWord();

@@ -29,7 +29,7 @@ public class wordRecognition {
 				List2.add(s);
 			}
 		}
-		for(int i=0;i<List2.size();i++){ //Counts the number of occurances
+		for(int i=0;i<List2.size();i++){ //Counts the number of occurrences
 			for(int j=0;j<splitStr.length;j++){
 				if(List2.get(i).equals(splitStr[j])){
 					count++;
@@ -97,4 +97,38 @@ public class wordRecognition {
 	public void wordRecognition(String newFile){ //Creates new instance of wordRecognition object
 		File = newFile;
 	}
+
+	//Topological Sort section
+
+	Hashtable<Node, ArrayList<Node>> topSort = new Hashtable<Node, ArrayList<Node>>();
+	ArrayList<Node> nodes = new ArrayList<Node>();
+
+	public void add(Node node) { //Will add a node
+		if (topSort.contains(node)) {
+			return;
+		}
+		else {
+			topSort.put(node, new ArrayList<Node>());
+			nodes.add(node);
+		}
+	}
+
+	public void addNeighbors(Node from, Node to) { //Dedicates Neighbor
+		if (!topSort.containsKey(from)) {
+			add(from);
+		}
+		if (!topSort.containsKey(to)) {
+			add(to);
+		}
+		topSort.get(from).add(to);
+		to.inDegree++;
+		to.inNodes.add(from);
+	}
+
+	public void addNeighbor(Node from, ArrayList<Node> list) { //Will add a neighbor
+		for (Node to: list) {
+			addNeighbor(from, to);
+		}
+	}
+
 }
