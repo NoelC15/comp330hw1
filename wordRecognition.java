@@ -138,12 +138,12 @@ public class wordRecognition {
 		List.add(ListToAdd);
 	}
 	
-	public boolean FindIdent(){
+	public boolean FindString(String Indentifier){
 		
 		boolean isThere = false;
 		for(int i =0;i<List.size();i++){
 			
-			if(List.get(i).contains("@")){
+			if(List.get(i).contains(Indentifier)){
 				
 				isThere = true;
 				List.clear();

@@ -6,12 +6,13 @@ public class organizer {
 	private static String FILENAME2; 
 	private static String FILENAME3; 
 	private static String FILENAME4;
-		
+	public static String [] MyArray;
 	organizer(){
 		FILENAME = "myRandom.txt";
 		FILENAME2 = "myRandom2.txt";
 		FILENAME3= "myRandom3.txt";
 		FILENAME4 = "sushi-cookbook.txt";
+		MyArray = new String [] {FILENAME,FILENAME2, FILENAME3, FILENAME4};
 	}
 		 
 	wordRecognition X = new wordRecognition();
@@ -89,17 +90,22 @@ public class organizer {
 	}
 	
 	private void step2(){
-		String [] ListWithID = {FILENAME,FILENAME2, FILENAME3, FILENAME4};
-		X.StoreList(ListWithID);
-		System.out.println("Files containing identifier @:");
-		for(int i =0; i<ListWithID.length; i++){
-			String file = ListWithID[i];
-			X.setFile(file);
-			X.ReadInFileIntoList();
-			boolean isItThere = X.FindIdent();
-			if(isItThere == true){
-				String NameOfFile = X.getFile();
-				System.out.println(NameOfFile);
+		System.out.println("Which identifier would you like to look for? (@ # or !)?");
+		String UserInput = input.nextLine();
+		if(!UserInput.equals("@") && !UserInput.equals("#") && !UserInput.equals("!")){
+			System.out.println("Sorry invalid input. Try again.");
+			step2();
+		}else if(UserInput.equals("@") || UserInput.equals("#") || UserInput.equals("!")){
+			System.out.println("Text files with identifier " +UserInput+":");
+			for(int i =0; i<MyArray.length; i++){
+				String file = MyArray[i];
+				X.setFile(file);
+				X.ReadInFileIntoList();
+				boolean isItThere = X.FindString(UserInput);
+				if(isItThere == true){
+					String NameOfFile = X.getFile();
+					System.out.println(NameOfFile);
+				}
 			}
 		}
 		System.out.println("\nType another number to continue or exit() to leave.");
@@ -134,13 +140,13 @@ public class organizer {
 	public void PrintHelloInst(){
 		System.out.println("Hello!");
 		System.out.println("Please select a number to output your text files identifier or exit() to quit.");
-		System.out.println("1. Word count \n2. Orginize by identifiers \n3. Frequently used words in a file \n4. "
+		System.out.println("1. Text reader and word counter \n2. Orginize by identifiers \n3. Frequently used words in a file \n4. "
 				+ "Notes in order by frequently used words \n5. FIles conatining words with @ \n6. "
 				+ "Notes in topological order");
 	}
 	
 	public void PrintInst(){
-		System.out.println("1. Word count \n2. Orginize by identifiers \n3. Frequently used words in a file \n4. "
+		System.out.println("1. Text reader and word counter \n2. Orginize by identifiers \n3. Frequently used words in a file \n4. "
 				+ "Notes in order by frequently used words \n5. FIles conatining words with @ \n6. "
 				+ "Notes in topological order");
 	}
