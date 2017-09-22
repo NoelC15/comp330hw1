@@ -2,17 +2,16 @@ import java.util.Scanner;
 
 public class organizer {
 	
-	private static String FILENAME = "myRandom.txt";
-	private static String FILENAME2 = "myRandom2.txt";
-	private static String FILENAME3 = "myRandom3.txt";
-	public String file;
-	public String file2;
-	public String file3;
-	
+	private static String FILENAME;
+	private static String FILENAME2; 
+	private static String FILENAME3; 
+	private static String FILENAME4;
+		
 	organizer(){
-		file = FILENAME;
-		file2 = FILENAME2;
-		file3 = FILENAME3;
+		FILENAME = "myRandom.txt";
+		FILENAME2 = "myRandom2.txt";
+		FILENAME3= "myRandom3.txt";
+		FILENAME4 = "sushi-cookbook.txt";
 	}
 		 
 	wordRecognition X = new wordRecognition();
@@ -45,14 +44,14 @@ public class organizer {
 			else{
 				System.out.println("Sorry invalid entry, try again!");
 				Steps();
-				//User typed an invalid input, starts Steps() method over
+				//Starts Steps() method over if user types invalid input
 			}
 		
 	}
 	
 	private void step1() {
 			System.out.println("Which file would you like to view? \n1. myRandom.txt \n2. myRandom2.txt \n"
-					+ "3. myRandom.txt");
+					+ "3. myRandom3.txt \n4. sushi-cookbook.txt");
 			
 			String next = input.nextLine();
 			if(next.equals("1")){
@@ -73,51 +72,39 @@ public class organizer {
 				X.ReadInFileIntoList();
 				X.CountWord();
 			}
+			else if(next.equals("4")){
+				X.setFile(FILENAME4);
+				X.ReadAndPrint();
+				X.ReadInFileIntoList();
+				X.CountWord();
+			}
 			else{
 				System.out.println("Invalid entry, try again");
-				PrintInst();
 				step1();
 			}
 			System.out.println("\nType another number to continue or exit() to leave.");
 			PrintInst();
 			Steps();
-			//Allows user to go back to main setup
+			//Takes user back to main setup
 	}
 	
 	private void step2(){
-		String a = file;
-		String b = file2;
-		String c = file3;
-		int count = 0;
-		
+		String [] ListWithID = {FILENAME,FILENAME2, FILENAME3, FILENAME4};
+		X.StoreList(ListWithID);
 		System.out.println("Files containing identifier @:");
-		while(count < 3){
-			String Words;
-			if(count ==0){
-				Words = a;
-			}
-			else if(count==2){
-				Words = b;
-			}else{
-				Words = c;
-			}
-			X.setFile(Words);
+		for(int i =0; i<ListWithID.length; i++){
+			String file = ListWithID[i];
+			X.setFile(file);
 			X.ReadInFileIntoList();
 			boolean isItThere = X.FindIdent();
 			if(isItThere == true){
 				String NameOfFile = X.getFile();
 				System.out.println(NameOfFile);
-			}else if(isItThere == false){
-				System.out.println("Files that DO NOT contain identifier @.");
-				String NameOfFile = X.getFile();
-				System.out.println(NameOfFile+ "\n");
 			}
-			count++;
 		}
 		System.out.println("\nType another number to continue or exit() to leave.");
 		PrintInst();
 		Steps();
-		
 	}
 	
 	private void step3() {
@@ -162,4 +149,3 @@ public class organizer {
 		System.out.println("GoodBye!");
 	}
 }
-

@@ -9,10 +9,12 @@ public class wordRecognition {
 	
 	public ArrayList<String> List;
 	public String File;
+	public String [] OrderedList;
 	
 	wordRecognition(){
 		File = "File can not be read";
 		List = new ArrayList<String>();
+		OrderedList = null;
 	}
 	
 	wordRecognition(String newFile){
@@ -144,11 +146,18 @@ public class wordRecognition {
 			if(List.get(i).contains("@")){
 				
 				isThere = true;
+				List.clear();
 				break;
 			}
 		}
 		List.clear();
 		return isThere;
 	}
+	
+	public void StoreList(String[] myList){
+		OrderedList = myList;
+	}
+	public String[] getArrayList(){
+		return OrderedList;
+	}
 }
-
