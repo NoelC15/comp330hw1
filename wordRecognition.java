@@ -55,9 +55,10 @@ public class wordRecognition {
             System.out.println("Occurrence of <" + List2.get(i) + "> is " + count + " times.");
             count = 0;
         }	
+        List.clear();
 	}
 	
-	public void ReadInFile(){
+	public void ReadAndPrint(){
 		BufferedReader br = null;
 		FileReader fr = null;
 
@@ -69,9 +70,45 @@ public class wordRecognition {
 			String sCurrentLine;
 			while ((sCurrentLine = br.readLine()) != null) {
 				System.out.println(sCurrentLine);
+			}
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
+				if (br != null)
+					br.close();
+
+				if (fr != null)
+					fr.close();
+
+			} catch (IOException ex) {
+
+				ex.printStackTrace();
+
+			}
+
+		}
+	}
+	
+	public void ReadInFileIntoList(){
+		BufferedReader br = null;
+		FileReader fr = null;
+
+		try {
+
+			fr = new FileReader(File);
+			br = new BufferedReader(fr);
+			
+			String sCurrentLine;
+			while ((sCurrentLine = br.readLine()) != null) {
 				addToList(sCurrentLine);
 			}
-		
+			
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -98,4 +135,20 @@ public class wordRecognition {
 	public void addToList(String ListToAdd){
 		List.add(ListToAdd);
 	}
+	
+	public boolean FindIdent(){
+		
+		boolean isThere = false;
+		for(int i =0;i<List.size();i++){
+			
+			if(List.get(i).contains("@")){
+				
+				isThere = true;
+				break;
+			}
+		}
+		List.clear();
+		return isThere;
+	}
 }
+
