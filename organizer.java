@@ -157,13 +157,13 @@ public class organizer {
 	public void PrintHelloInst(){
 		System.out.println("Hello!");
 		System.out.println("Please select a number to output your text files identifier or exit() to quit.");
-		System.out.println("1. Text reader and word counter for all words in file \n2. Orginize files by identifiers \n3. View how many times a identifier appears in a file \n4. "
+		System.out.println("1. Text reader and word counter for all words in file. \n2. Orginize files by identifiers \n3. View how many times an identifier appears in a file. \n4. "
 				+ "Notes in order by frequently used words \n5. Files conatining words with @ \n6. "
 				+ "Notes in topological order");
 	}
 	
 	public void PrintInst(){
-		System.out.println("1. Text reader and word counter for all words in file \n2. Orginize files by identifiers \n3. Place files in Alphabetical order with @ identifier \n4. "
+		System.out.println("1. Text reader and word counter for all words in file. \n2. Orginize files by identifiers \n3. View how many times an identifier appears in a file. \n4. "
 				+ "Notes in order by frequently used words \n5. Files conatining words with @ \n6. "
 				+ "Notes in topological order");
 	}
