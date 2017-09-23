@@ -34,12 +34,6 @@ public class organizer {
 			else if(userInPut.equals("4")){
 				step4();
 			}
-			else if(userInPut.equals("5")){
-				step5();
-			}
-			else if(userInPut.equals("6")){
-				step6();
-			}
 			else if(userInPut.equals("exit()")){
 				EndOfProgram();
 			}
@@ -91,7 +85,7 @@ public class organizer {
 	}
 	
 	private void step2(){
-		System.out.println("Which identifier would you like to look for in a file? (@ # or !)?");
+		System.out.println("Type in an identifier (@ # or !) to show which files contain that identifier.");
 		String UserInput = input.nextLine();
 		if(!UserInput.equals("@") && !UserInput.equals("#") && !UserInput.equals("!")){
 			System.out.println("Sorry invalid input. Try again.");
@@ -126,7 +120,7 @@ public class organizer {
 				String file = MyArray[i];
 				X.setFile(file);
 				X.ReadInFileIntoList();
-				int W = X.organizeAlphabetically(UserInput);
+				int W = X.organizeByCount(UserInput);
 				System.out.println(W+ " in file: "+file);
 			
 			}
@@ -137,35 +131,49 @@ public class organizer {
 	}
 	
 	private void step4() {
-		System.out.println("Not yet implemented! \nSelect another number or exit() to quit");
+		int x = 0;
+		String fi = "NO WORDS";
+		System.out.println("Which file would you like to see identifiers for? \n"
+				+ "1. myRandom.txt \n2. myRandom2.txt \n3. myRandom3.txt \n4. sushi-cookbook.txt");
+		String UserInput = input.nextLine();
+		if(!UserInput.equals("1") && !UserInput.equals("2") && !UserInput.equals("3") && !UserInput.equals("4")){
+			System.out.println("Sorry invalid input. Try again.");
+			step4();
+		}else if(UserInput.equals("1")){
+			x = 0;
+			fi = MyArray[0];
+		}else if(UserInput.endsWith("2")){
+			x =1;
+			fi = MyArray[1];
+		}else if(UserInput.equals("3")){
+			x =2;
+			fi = MyArray[2];
+		}else if (UserInput.equals("4")){
+			x = 3;
+			fi = MyArray[3];
+		}
+			System.out.println("Identifier in file "+fi+":");
+			for(int i =0; i<1; i++){
+				String file = MyArray[x];
+				X.setFile(file);
+				X.ReadInFileIntoList();
+				X.PrintWOrds("@","#","!");
+			}
+		
 		PrintInst();
 		Steps();
 	}
 	
-	private void step5() {
-		System.out.println("Not yet implemented! \nSelect another number or exit() to quit");
-		PrintInst();
-		Steps();
-	}
-	
-	private void step6() {
-		System.out.println("Not yet implemented! \nSelect another number or exit() to quit");
-		PrintInst();
-		Steps();
-	}
-
 	public void PrintHelloInst(){
 		System.out.println("Hello!");
-		System.out.println("Please select a number to output your text files identifier or exit() to quit.");
-		System.out.println("1. Text reader and word counter for all words in file. \n2. Orginize files by identifiers \n3. View how many times an identifier appears in a file. \n4. "
-				+ "Notes in order by frequently used words \n5. Files conatining words with @ \n6. "
-				+ "Notes in topological order");
+		System.out.println("Below are a few options, please select the number that you would like to activate.");
+		System.out.println("1. Text reader and word counter for all words in file. \n2. Orginize files by identifiers. \n3. View how many times an identifier appears in a file. \n4. "
+				+ "View files identifiers.");
 	}
 	
-	public void PrintInst(){
-		System.out.println("1. Text reader and word counter for all words in file. \n2. Orginize files by identifiers \n3. View how many times an identifier appears in a file. \n4. "
-				+ "Notes in order by frequently used words \n5. Files conatining words with @ \n6. "
-				+ "Notes in topological order");
+	private void PrintInst(){
+		System.out.println("1. Text reader and word counter for all words in file. \n2. Orginize files by identifiers. \n3. Place files in Alphabetical order with @ identifier. \n4. "
+				+ "View files identifiers.");
 	}
 	
 	private void EndOfProgram() {

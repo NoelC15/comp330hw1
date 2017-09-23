@@ -150,7 +150,7 @@ public class wordRecognition {
 	}
 	
 	
-	public int organizeAlphabetically(String ID){
+	public int organizeByCount(String ID){
 		int count = 0;
 		int occurance = 0;
 		String [] stringArr = List.toArray(new String[0]);
@@ -167,4 +167,22 @@ public class wordRecognition {
 			}
 		return occurance;
 	}
+	
+	public void PrintWOrds(String ID, String ID2, String ID3){
+		int count = 0;
+		String [] stringArr = List.toArray(new String[0]);
+		List.clear();
+		while(count < stringArr.length){
+			String B = stringArr[count];
+			String [] arr = B.split(" ");
+			for(String ss : arr){
+				if(ss.contains(ID) || ss.contains(ID2) || ss.contains(ID3)){
+					System.out.println(ss);
+				}
+			}
+			count++;
+			}
+		
+	}
+	
 }
