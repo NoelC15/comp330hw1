@@ -9,12 +9,10 @@ public class wordRecognition {
 	
 	public ArrayList<String> List;
 	public String File;
-	public String [] OrderedList;
 	
 	wordRecognition(){
 		File = "File can not be read";
 		List = new ArrayList<String>();
-		OrderedList = null;
 	}
 	
 	wordRecognition(String newFile){
@@ -139,14 +137,11 @@ public class wordRecognition {
 	}
 	
 	public boolean FindString(String Indentifier){
-		
 		boolean isThere = false;
 		for(int i =0;i<List.size();i++){
 			
 			if(List.get(i).contains(Indentifier)){
-				
 				isThere = true;
-				List.clear();
 				break;
 			}
 		}
@@ -154,10 +149,22 @@ public class wordRecognition {
 		return isThere;
 	}
 	
-	public void StoreList(String[] myList){
-		OrderedList = myList;
-	}
-	public String[] getArrayList(){
-		return OrderedList;
+	
+	public int organizeAlphabetically(String ID){
+		int count = 0;
+		int occurance = 0;
+		String [] stringArr = List.toArray(new String[0]);
+		List.clear();
+		while(count < stringArr.length){
+			String B = stringArr[count];
+			String [] arr = B.split(" ");
+			for(String ss : arr){
+				if(ss.contains(ID)){
+					occurance++;
+				}
+			}
+			count++;
+			}
+		return occurance;
 	}
 }
